@@ -1,6 +1,20 @@
 monolog:
     channels:
         - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
+        - audit       # Journal central : recherches, erreurs, déconnexions, usage hors-ligne…
+    handlers:
+        # Persiste TOUT le canal "audit" dans la base d'audit (table audit_log)
+        audit_db:
+            type: service
+            id: App\Logger\DoctrineAuditHandler
+            channels: [audit]
+        # Double sécurité : trace fichier JSON du journal d'audit
+        audit_file:
+            type: stream
+            path: "%kernel.logs_dir%/audit.log"
+            level: info
+            channels: [audit]
+            formatter: monolog.formatter.json
 
 when@dev:
     monolog:
