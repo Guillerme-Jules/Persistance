@@ -21,3 +21,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Client ClickHouse (base des vents solaires) — paramètres depuis l'env
+    App\SolarWind\ClickHouseClient:
+        arguments:
+            $host: '%env(CLICKHOUSE_HOST)%'
+            $port: '%env(int:CLICKHOUSE_PORT)%'
+            $database: '%env(CLICKHOUSE_DB)%'
+            $username: '%env(CLICKHOUSE_USER)%'
+            $password: '%env(CLICKHOUSE_PASSWORD)%'

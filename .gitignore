@@ -18,3 +18,13 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+# Données sources (volumineuses, non versionnées)
+/solarwinds-dscovr-compiled.zip
+
+# IDE
+/.vscode/
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
